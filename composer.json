@@ -1,0 +1,17 @@
+{
+    "name": "bowphp/soauth",
+    "description": "The social authentification package for Bow Framework",
+    "type": "library",
+    "require": {
+        "league/oauth2-client": "dev-master"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Franck DAKIA",
+            "email": "dakiafranck@gmail.com",
+            "role": "Lead Developer"
+        }
+    ],
+    "minimum-stability": "dev"
+}
