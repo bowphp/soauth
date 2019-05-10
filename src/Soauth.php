@@ -39,11 +39,12 @@ class Soauth
      * Make redirect
      *
      * @param string $provider
+     * @param array $scope
      * @return string
      */
-    public static function redirect($provider)
+    public static function redirect($provider, $scope = [])
     {
-        return static::provider($provider)->redirect();
+        return static::provider($provider)->redirect($scope);
     }
 
     /**
