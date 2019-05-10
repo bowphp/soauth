@@ -18,7 +18,7 @@ Actualy it support the following provider:
 To install the installation `soauth`, you must use `composer` (PHP package manager) like this.
 
 ```bash
-composer require bowphp/policier
+composer require bowphp/soauth
 ```
 
 Documentation is available in [english](./docs/en.md) and [frensh](./docs/fr.md)
