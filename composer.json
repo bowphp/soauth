@@ -8,6 +8,11 @@
     "require-dev": {
         "phpunit/phpunit": "^7"
     },
+    "autoload": {
+        "psr-4": {
+            "Bow\\Soauth\\": "src/"
+        }
+    },
     "license": "MIT",
     "authors": [
         {
