@@ -11,3 +11,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add the multiple driver support
 - Add documentation
 - Implement Oauth wrapped in `thephpleague/oauth2-client` [https://github.com/thephpleague/oauth2-client](https://github.com/thephpleague/oauth2-client)
+- Add unity test
