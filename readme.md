@@ -21,4 +21,4 @@ To install the installation `soauth`, you must use `composer` (PHP package manag
 composer require bowphp/soauth
 ```
 
-Documentation is available in [english](./docs/en.md) and [frensh](./docs/fr.md)
+Documentation is available in [english](./docs/en.md) and [frensh](./docs/fr.md). You can [join us on slask](https://join.slack.com/t/bowphp/shared_invite/enQtNzMxOTQ0MTM2ODM5LTQ3MWQ3Mzc1NDFiNDYxMTAyNzBkNDJlMTgwNDJjM2QyMzA2YTk4NDYyN2NiMzM0YTZmNjU1YjBhNmJjZThiM2Q)**
