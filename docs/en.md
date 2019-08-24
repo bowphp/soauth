@@ -4,7 +4,7 @@ The social authentification package for Bow Framework.
 
 ## About
 
-This package use the `thephpleague/oauth2-client` [https://github.com/thephpleague/oauth2-client](https://github.com/thephpleague/oauth2-client) for make a wrapper.
+This package use the [`thephpleague/oauth2-client`](https://github.com/thephpleague/oauth2-client](https://github.com/thephpleague/oauth2-client) for make a wrapper.
 
 Actualy it support the following provider:
 
@@ -50,7 +50,7 @@ GITHUB_CLIENT_SECRET=client_secret
 GITHUB_REDIRECT_URI=redirect_uri
 ```
 
-## Usable
+## Usage
 
 For use the package, you must import the package configuration:
 
@@ -103,12 +103,12 @@ Define the route who will use for call soauth actions:
 
 ```php
 $app->get('/oauth/:provider/redirect', 'SoauthController::redirect');
-$app->get('/oauth/:provider/callback', 'SoauthController::callback');
+$app->get('/oauth/:provider/callback', 'SoauthController::handle');
 ```
 
 #### Author
 
-**Franck DAKIA** is a Full Stack developer currently based in Africa, Ivory Coast, Abidjan. Passionate about code, and collaborative development, Speaker, Trainer and Member of several communities of developers.
+**Franck DAKIA** is a Full Stack developer based in Africa, Ivory Coast. Passionate about code and collaborative development, speaker, trainer and member of several developer communities and many collaborators.
 
 Contact: [dakiafranck@gmail.com](mailto:dakiafranck@gmail.com) - [@franck_dakia](https://twitter.com/franck_dakia)
 
