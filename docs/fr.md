@@ -56,8 +56,8 @@ Pour utiliser le package, vous devez importer la configuration du package:
 
 ```php
 return [
-	\Bow\Soauth\SoauthConfiguration::class,
-	...
+  \Bow\Soauth\SoauthConfiguration::class,
+  ...
 ];
 ```
 
@@ -73,27 +73,27 @@ use Bow\Soauth\Soauth;
 
 class SoauthController extends Controller
 {
-	/**
-	 * Redirection vers le fournisseur define
-	 * 
-	 * @param string $provider
-	 * @return mixed
-	 */
-	public function redirect($provider)
-	{
-		return Soauth::redirect($provider, $scope);
-	}
+  /**
+   * Redirection vers le fournisseur define
+   * 
+   * @param string $provider
+   * @return mixed
+   */
+  public function redirect($provider)
+  {
+    return Soauth::redirect($provider, $scope);
+  }
 
-	/**
-	 * Gérer les informations oauth
-	 * 
-	 * @param string $provider
-	 * @return mixed
-	 */
-	public function handle($provider)
-	{
-		$user = Soauth::resource($provider);
-	}
+  /**
+   * Gérer les informations oauth
+   * 
+   * @param string $provider
+   * @return mixed
+   */
+  public function handle($provider)
+  {
+    $user = Soauth::resource($provider);
+  }
 }
 ```
 
