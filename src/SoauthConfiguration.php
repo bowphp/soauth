@@ -19,7 +19,7 @@ class SoauthConfiguration extends Configuration
 
         $soauth = array_merge(
             require __DIR__.'/../config/soauth.php',
-            $Soauth
+            $soauth
         );
 
         $config['soauth'] = $soauth;
