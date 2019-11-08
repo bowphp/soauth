@@ -9,12 +9,11 @@ class GitlabProvider extends AbstractProvider
     /**
      * Get the user resource
      *
-     * @param mixed $oauth
      * @return UserResource
      */
-    public function getResource($oauth)
+    public function getResource()
     {
-        $resource = $this->oauth
+        $resource = $this->provider
             ->getResourceOwner($access_token);
 
         return new UserResource($resource->toArray())

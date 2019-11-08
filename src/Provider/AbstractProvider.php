@@ -3,6 +3,7 @@
 namespace Bow\Saauth\Provider;
 
 use Bow\Saauth\UserResource;
+use Bow\Saauth\SoauthException;
 use League\OAuth2\Client\Provider\GenericProvider as LeagueOAuth2ClientProvider;
 
 abstract class AbstractProvider
@@ -14,7 +15,13 @@ abstract class AbstractProvider
      */
     private $provider;
 
-    public function __construc($config)
+    /**
+     * AbstractProvider constructor
+     *
+     * @param array $config
+     * @return void
+     */
+    public function __construct($config)
     {
         $this->provider = new LeagueOAuth2ClientProvider([
             'clientId' => $config['client_id']
@@ -49,12 +56,9 @@ abstract class AbstractProvider
      */
     public function process()
     {
-        $request = request();
-
         // Check request state and saved state
-        if ($request->get('state') !== $request->session()->get('oauth2_state')) {
-            // Todo: throw error here
-            return;
+        if ($request->get('state') !== session()->get('oauth2_state')) {
+            throw new SoauthException("The oauth session corrupted");
         }
 
         // We try to get an access token using the authorization code grant.

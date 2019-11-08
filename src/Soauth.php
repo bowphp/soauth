@@ -30,7 +30,7 @@ class Soauth
      * @param array $config
      * @return Soauth
      */
-    public function configure($config)
+    public static function configure($config)
     {
         $this->config = $config;
     }
@@ -53,7 +53,7 @@ class Soauth
      * @param string $provider
      * @return UserResource
      */
-    public static function resource($provider)
+    public static function resource(string $provider)
     {
         return static::provider($provider)->process();
     }
@@ -61,10 +61,10 @@ class Soauth
     /**
      * Make provider
      *
-     * @param strinf $provider
+     * @param string $provider
      * @return ProviderConfiguration
      */
-    private static function provider($provider)
+    private static function provider(string $provider)
     {
         $config = $this->config[$provider];
 

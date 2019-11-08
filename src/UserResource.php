@@ -9,16 +9,17 @@ class UserResource
      *
      * @var array
      */
-    private $config;
+    private $attributes;
 
     /**
      * UserResource contructor
      *
-     * @param array $config
+     * @param array $attributes
+     * @return void
      */
-    public function __construct($config)
+    public function __construct(array $attributes)
     {
-        $this->config = $config;
+        $this->attributes = $attributes;
     }
 
     /**
@@ -28,7 +29,7 @@ class UserResource
      */
     public function getName()
     {
-        return $this->config['name'] ?? null;
+        return $this->attributes['name'] ?? null;
     }
 
     /**
@@ -38,7 +39,7 @@ class UserResource
      */
     public function getEmail()
     {
-        return $this->config['email'] ?? null;
+        return $this->attributes['email'] ?? null;
     }
 
     /**
@@ -48,7 +49,7 @@ class UserResource
      */
     public function getAvatar()
     {
-        return $this->config['avatar'] ?? null;
+        return $this->attributes['avatar'] ?? null;
     }
 
     /**
@@ -58,6 +59,6 @@ class UserResource
      */
     public function getNickname()
     {
-        return $this->config['nickname'] ?? null;
+        return $this->attributes['nickname'] ?? null;
     }
 }
