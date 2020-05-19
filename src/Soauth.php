@@ -11,7 +11,7 @@ class Soauth
      *
      * @var array
      */
-    private $providers = [
+    const PROVIDERS = [
         'facebook' => \Bow\Soauth\Provider\FacebookProvider::class,
         'gitlab' => \Bow\Soauth\Provider\GitlabProvider::class,
         'github' => \Bow\Soauth\Provider\GithubProvider::class
@@ -32,7 +32,7 @@ class Soauth
      */
     public static function configure($config)
     {
-        $this->config = $config;
+        static::$config = $config;
     }
 
     /**
@@ -64,10 +64,11 @@ class Soauth
      * @param string $provider
      * @return ProviderConfiguration
      */
-    private static function provider(string $provider)
+    private static function provider(string $name)
     {
-        $config = $this->config[$provider];
+        $config = static::$config[$name];
+        $provider = Soauth::PROVIDERS[$name];
 
-        return new $this->providers[$provider]($config);
+        return new $provider($config);
     }
 }
