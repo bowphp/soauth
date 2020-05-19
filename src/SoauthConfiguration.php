@@ -36,6 +36,6 @@ class SoauthConfiguration extends Configuration
      */
     public function run()
     {
-        return $this->container->make('soauth')
+        return $this->container->make('soauth');
     }
 }
