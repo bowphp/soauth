@@ -32,6 +32,6 @@ Thank you for considering contributing to Bow Framework! The contribution guide 
 
 ## Contact
 
-[dakiafranck@gmail.com](mailto:dakiafranck@gmail.com) - [@franck_dakia](https://twitter.com/franck_dakia)
+[papac@bowphp.com](mailto:papac@bowphp.com) - [@franck_dakia](https://twitter.com/franck_dakia)
 
 <a href="https://www.buymeacoffee.com/iOLqZ3h" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-black.png" alt="Buy Me A Coffee" style="height: 30px !important; width: 150px !important;" ></a>
