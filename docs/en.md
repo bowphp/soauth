@@ -66,9 +66,9 @@ We consider the following controller:
 ```php
 <?php
 
-namespace App\Controller;
+namespace App\Controllers;
 
-use App\Controller\Controller;
+use App\Controllers\Controller;
 use Bow\Soauth\Soauth;
 
 class SoauthController extends Controller
