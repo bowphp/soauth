@@ -15,7 +15,7 @@ Actualy it support the following provider:
 - Gitlab
 - Github
 
-To install the installation `soauth`, you must use `composer` (PHP package manager) like this.
+To install `soauth`, you must use `composer` (PHP package manager) like this.
 
 ```bash
 composer require bowphp/soauth
