@@ -11,14 +11,14 @@ class SoauthConfiguration extends Configuration
      * Create the configuration
      *
      * @param Loader $config
-     * @return mixed
+     * @return void
      */
-    public function create(Loader $config)
+    public function create(Loader $config): void
     {
         $soauth = (array) $config['soauth'];
 
         $soauth = array_merge(
-            require __DIR__.'/../config/soauth.php',
+            require __DIR__ . '/../config/soauth.php',
             $soauth
         );
 
@@ -34,8 +34,8 @@ class SoauthConfiguration extends Configuration
      *
      * @return mixed
      */
-    public function run()
+    public function run(): void
     {
-        return $this->container->make('soauth');
+        $this->container->make('soauth');
     }
 }

@@ -13,7 +13,7 @@ abstract class AbstractProvider
      *
      * @var LeagueOAuth2ClientProvider
      */
-    private $provider;
+    private LeagueOAuth2ClientProvider $provider;
 
     /**
      * AbstractProvider constructor
@@ -21,7 +21,7 @@ abstract class AbstractProvider
      * @param array $config
      * @return void
      */
-    public function __construct($config)
+    public function __construct(array $config)
     {
         $this->provider = new LeagueOAuth2ClientProvider([
             'clientId' => $config['client_id'],
@@ -33,9 +33,10 @@ abstract class AbstractProvider
     /**
      * Get redirect url
      *
+     * @param array $scope
      * @return string
      */
-    public function redirect($scope = [])
+    public function redirect(array $scope = [])
     {
         // We get the redirect url generate for you
         $authorization_url = $this->provider->getAuthorizationUrl(
@@ -54,7 +55,7 @@ abstract class AbstractProvider
      *
      * @return UserResource
      */
-    public function process()
+    public function process(): UserResource
     {
         // Check request state and saved state
         if ($this->request->get('state') !== session()->get('oauth2_state')) {
@@ -74,7 +75,8 @@ abstract class AbstractProvider
     /**
      * Get the user resource
      *
+     * @param string $access_token
      * @return UserResource
      */
-    abstract public function getResource($access_token);
+    abstract public function getResource(string $access_token): UserResource;
 }

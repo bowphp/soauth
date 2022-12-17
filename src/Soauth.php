@@ -11,7 +11,7 @@ class Soauth
      *
      * @var array
      */
-    const PROVIDERS = [
+    private const PROVIDERS = [
         'facebook' => \Bow\Soauth\Provider\FacebookProvider::class,
         'gitlab' => \Bow\Soauth\Provider\GitlabProvider::class,
         'github' => \Bow\Soauth\Provider\GithubProvider::class
@@ -22,15 +22,15 @@ class Soauth
      *
      * @var array
      */
-    private static $config;
+    private static array $config;
 
     /**
      * Make Soauth configuration
      *
      * @param array $config
-     * @return Soauth
+     * @return void
      */
-    public static function configure($config)
+    public static function configure(array $config)
     {
         static::$config = $config;
     }
@@ -42,7 +42,7 @@ class Soauth
      * @param array $scope
      * @return string
      */
-    public static function redirect($provider, $scope = [])
+    public static function redirect(string $provider, array $scope = []): string
     {
         return static::provider($provider)->redirect($scope);
     }
@@ -53,7 +53,7 @@ class Soauth
      * @param string $provider
      * @return UserResource
      */
-    public static function resource(string $provider)
+    public static function resource(string $provider): UserResource
     {
         return static::provider($provider)->process();
     }
@@ -62,12 +62,17 @@ class Soauth
      * Make provider
      *
      * @param string $provider
-     * @return ProviderConfiguration
+     * @return AbstractProvider
      */
-    private static function provider(string $name)
+    private static function provider(string $name): AbstractProvider
     {
-        $config = static::$config[$name];
-        $provider = Soauth::PROVIDERS[$name];
+        $config = static::$config[$name] ?? null;
+
+        if (!$config) {
+            throw new SoauthException("Configuration not exists for the provider $name");
+        }
+
+        $provider = static::PROVIDERS[$name];
 
         return new $provider($config);
     }
