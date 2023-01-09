@@ -110,7 +110,10 @@ $app->get('/oauth/:provider/callback', 'SoauthController::handle');
 
 **Franck DAKIA** est un développeur Full Stack basé actuellement en Afrique, Côte d'ivoire, Abidjan. Passioné de code, et développement collaboratif, Speaker, Formateur et Membre de plusieurs communautés de développeurs.
 
-Contact: [dakiafranck@gmail.com](mailto:dakiafranck@gmail.com) - [@franck_dakia](https://twitter.com/franck_dakia)
+Contact:
+
+- [Franck DAKIA](https://github.com/papac)
+- [Thank's collaborators](https://github.com/bowphp/docs/graphs/contributors)
 
 **SVP s'il y a un bogue sur le projet veuillez me contacter par email ou laissez moi un message sur le [slack](https://bowphp.slack.com).**
 
