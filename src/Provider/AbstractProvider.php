@@ -5,6 +5,7 @@ namespace Bow\Soauth\Provider;
 use Bow\Soauth\UserResource;
 use Bow\Soauth\Exception\SoauthException;
 use League\OAuth2\Client\Provider\GenericProvider as LeagueOAuth2ClientProvider;
+use League\OAuth2\Client\Token\AccessTokenInterface;
 
 abstract class AbstractProvider
 {
@@ -13,7 +14,7 @@ abstract class AbstractProvider
      *
      * @var LeagueOAuth2ClientProvider
      */
-    private $provider;
+    protected LeagueOAuth2ClientProvider $provider;
 
     /**
      * AbstractProvider constructor
@@ -39,7 +40,7 @@ abstract class AbstractProvider
     {
         // We get the redirect url generate for you
         $authorization_url = $this->provider->getAuthorizationUrl(
-            ['scope' => $this->scope]
+            ['scope' => $scope]
         );
 
         // We get the state generated for you and
@@ -56,15 +57,17 @@ abstract class AbstractProvider
      */
     public function process()
     {
+        $request = request();
+    
         // Check request state and saved state
-        if ($this->request->get('state') !== session()->get('oauth2_state')) {
+        if ($request->get('state') !== session()->get('oauth2_state')) {
             throw new SoauthException("The oauth session corrupted");
         }
 
         // We try to get an access token using the authorization code grant.
         $access_token = $this->provider
             ->getAccessToken('authorization_code', [
-                'code' => $this->request->get('code')
+                'code' => $request->get('code')
             ]);
 
         // We get use resouece
@@ -76,5 +79,5 @@ abstract class AbstractProvider
      *
      * @return UserResource
      */
-    abstract public function getResource($access_token);
+    abstract public function getResource(AccessTokenInterface $access_token);
 }

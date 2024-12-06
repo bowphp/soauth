@@ -66,9 +66,9 @@ Nous considérons le contrôleur suivant:
 ```php
 <?php
 
-namespace App\Controllers;
+namespace App\Controller;
 
-use App\Controllers\Controller;
+use App\Controller\Controller;
 use Bow\Soauth\Soauth;
 
 class SoauthController extends Controller

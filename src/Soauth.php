@@ -2,7 +2,7 @@
 
 namespace Bow\Soauth;
 
-use Bow\Http\Request;
+use Bow\Soauth\Provider\AbstractProvider;
 
 class Soauth
 {
@@ -64,7 +64,7 @@ class Soauth
      * @param string $provider
      * @return AbstractProvider
      */
-    private static function provider(string $provider)
+    private static function provider(string $provider): AbstractProvider
     {
         $config = static::$config[$provider];
 
