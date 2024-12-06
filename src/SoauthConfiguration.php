@@ -11,9 +11,9 @@ class SoauthConfiguration extends Configuration
      * Create the configuration
      *
      * @param Loader $config
-     * @return mixed
+     * @return void
      */
-    public function create(Loader $config)
+    public function create(Loader $config): void
     {
         $soauth = (array) $config['soauth'];
 
@@ -32,10 +32,10 @@ class SoauthConfiguration extends Configuration
     /**
      * Launch configuration
      *
-     * @return mixed
+     * @return void
      */
-    public function run()
+    public function run(): void
     {
-        return $this->container->make('soauth');
+        $this->container->make('soauth');
     }
 }
