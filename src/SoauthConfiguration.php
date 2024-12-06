@@ -25,7 +25,7 @@ class SoauthConfiguration extends Configuration
         $config['soauth'] = $soauth;
 
         $this->container->bind('soauth', function () use ($config) {
-            return Soauth::configure($config['soauth']);
+            return Soauth::configure((array) $config['soauth']);
         });
     }
 
