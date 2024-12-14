@@ -27,6 +27,16 @@ class UserResource
      *
      * @return string
      */
+    public function getId()
+    {
+        return $this->attributes['id'] ?? null;
+    }
+
+    /**
+     * Get the user name
+     *
+     * @return string
+     */
     public function getName()
     {
         return $this->attributes['name'] ?? null;
