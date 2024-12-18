@@ -218,7 +218,7 @@ class UserResource
      *
      * @return mixed|null
      */
-    private function getAttribute(string $key)
+    public function getAttribute(string $key)
     {
         return $this->attributes[$key] ?? null;
     }
