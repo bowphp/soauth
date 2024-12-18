@@ -30,7 +30,7 @@ abstract class AbstractProvider
 
         // We get the state generated for you and
         // store it to the session.
-        session('oauth2_state', $this->provider->getState());
+        session()->add('oauth2_state', $this->provider->getState());
 
         return redirect($authorization_url);
     }
@@ -40,7 +40,7 @@ abstract class AbstractProvider
      *
      * @return UserResource
      */
-    public function process()
+    public function resource(): UserResource
     {
         $request = request();
     

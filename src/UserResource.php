@@ -35,7 +35,7 @@ class UserResource
      */
     public function getId(): ?string
     {
-        return $this->getField('id');
+        return $this->getAttribute('id');
     }
 
     /**
@@ -45,7 +45,7 @@ class UserResource
      */
     public function getName(): ?string
     {
-        return $this->getField('name');
+        return $this->getAttribute('name');
     }
 
     /**
@@ -55,7 +55,7 @@ class UserResource
      */
     public function getNickName(): ?string
     {
-        return $this->getField('nickname');
+        return $this->getAttribute('nickname');
     }
 
     /**
@@ -65,7 +65,7 @@ class UserResource
      */
     public function getFirstName(): ?string
     {
-        return $this->getField('first_name');
+        return $this->getAttribute('first_name');
     }
 
     /**
@@ -75,7 +75,7 @@ class UserResource
      */
     public function getLastName(): ?string
     {
-        return $this->getField('last_name');
+        return $this->getAttribute('last_name');
     }
 
     /**
@@ -85,7 +85,7 @@ class UserResource
      */
     public function getEmail(): ?string
     {
-        return $this->getField('email');
+        return $this->getAttribute('email');
     }
 
     /**
@@ -95,7 +95,7 @@ class UserResource
      */
     public function getHometown(): ?array
     {
-        return $this->getField('hometown');
+        return $this->getAttribute('hometown');
     }
 
     /**
@@ -106,7 +106,7 @@ class UserResource
      */
     public function getBio(): ?string
     {
-        return $this->getField('bio');
+        return $this->getAttribute('bio');
     }
 
     /**
@@ -117,7 +117,7 @@ class UserResource
 
     public function isDefaultPicture(): bool
     {
-        return $this->getField('is_silhouette');
+        return $this->getAttribute('is_silhouette');
     }
 
     /**
@@ -127,7 +127,7 @@ class UserResource
      */
     public function getPictureUrl(): ?string
     {
-        return $this->getField('picture_url');
+        return $this->getAttribute('picture_url');
     }
 
     /**
@@ -138,7 +138,7 @@ class UserResource
      */
     public function getCoverPhotoUrl(): ?string
     {
-        return $this->getField('cover_photo_url');
+        return $this->getAttribute('cover_photo_url');
     }
 
     /**
@@ -148,7 +148,7 @@ class UserResource
      */
     public function getGender(): ?string
     {
-        return $this->getField('gender');
+        return $this->getAttribute('gender');
     }
 
     /**
@@ -159,7 +159,7 @@ class UserResource
      */
     public function getLocale(): ?string
     {
-        return $this->getField('locale');
+        return $this->getAttribute('locale');
     }
 
     /**
@@ -169,7 +169,7 @@ class UserResource
      */
     public function getLink(): ?string
     {
-        return $this->getField('link');
+        return $this->getAttribute('link');
     }
 
     /**
@@ -180,7 +180,7 @@ class UserResource
      */
     public function getTimezone(): ?float
     {
-        return $this->getField('timezone');
+        return $this->getAttribute('timezone');
     }
 
     /**
@@ -218,7 +218,7 @@ class UserResource
      *
      * @return mixed|null
      */
-    private function getField(string $key)
+    private function getAttribute(string $key)
     {
         return $this->attributes[$key] ?? null;
     }

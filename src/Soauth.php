@@ -58,7 +58,7 @@ class Soauth
      */
     public static function resource(string $provider)
     {
-        return static::provider($provider)->process();
+        return static::provider($provider)->resource();
     }
 
     /**
