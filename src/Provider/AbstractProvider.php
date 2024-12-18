@@ -4,7 +4,7 @@ namespace Bow\Soauth\Provider;
 
 use Bow\Soauth\UserResource;
 use Bow\Soauth\Exception\SoauthException;
-use League\OAuth2\Client\Provider\GenericProvider as LeagueOAuth2ClientProvider;
+use League\OAuth2\Client\Provider\AbstractProvider as LeagueOAuth2AbstractProvider;
 use League\OAuth2\Client\Token\AccessTokenInterface;
 
 abstract class AbstractProvider
@@ -12,24 +12,9 @@ abstract class AbstractProvider
     /**
      * The provider config instance
      *
-     * @var LeagueOAuth2ClientProvider
+     * @var LeagueOAuth2AbstractProvider
      */
-    protected LeagueOAuth2ClientProvider $provider;
-
-    /**
-     * AbstractProvider constructor
-     *
-     * @param array $config
-     * @return void
-     */
-    public function __construct($config)
-    {
-        $this->provider = new LeagueOAuth2ClientProvider([
-            'clientId' => $config['client_id'],
-            'clientSecret' => $config['client_secret'],
-            'redirectUri' => $config['redirect_url']
-        ]);
-    }
+    protected LeagueOAuth2AbstractProvider $provider;
 
     /**
      * Get redirect url

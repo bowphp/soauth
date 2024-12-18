@@ -14,7 +14,10 @@ class Soauth
     private static $providers = [
         'facebook' => \Bow\Soauth\Provider\FacebookProvider::class,
         'gitlab' => \Bow\Soauth\Provider\GitlabProvider::class,
-        'github' => \Bow\Soauth\Provider\GithubProvider::class
+        'github' => \Bow\Soauth\Provider\GithubProvider::class,
+        'google' => \Bow\Soauth\Provider\GoogleProvider::class,
+        'linkedin' => \Bow\Soauth\Provider\LinkedinProvider::class,
+        'instagram' => \Bow\Soauth\Provider\InstagramProvider::class,
     ];
 
     /**

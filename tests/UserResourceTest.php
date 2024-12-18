@@ -13,7 +13,7 @@ class UserResourceTest extends \PHPUnit\Framework\TestCase
 
         $this->assertNull($user->getName());
         $this->assertNull($user->getEmail());
-        $this->assertNull($user->getAvatar());
+        $this->assertNull($user->getPictureUrl());
         $this->assertNull($user->getNickName());
     }
 }

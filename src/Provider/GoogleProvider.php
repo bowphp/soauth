@@ -3,10 +3,10 @@
 namespace Bow\Soauth\Provider;
 
 use Bow\Soauth\UserResource;
-use League\OAuth2\Client\Provider\Github;
+use League\OAuth2\Client\Provider\Google;
 use League\OAuth2\Client\Token\AccessTokenInterface;
 
-class GithubProvider extends AbstractProvider
+class GoogleProvider extends AbstractProvider
 {
     /**
      * AbstractProvider constructor
@@ -16,7 +16,7 @@ class GithubProvider extends AbstractProvider
      */
     public function __construct($config)
     {
-        $this->provider = new Github([
+        $this->provider = new Google([
             'clientId' => $config['client_id'],
             'clientSecret' => $config['client_secret'],
             'redirectUri' => $config['redirect_url']
