@@ -19,7 +19,7 @@ class FacebookProvider extends AbstractProvider
         $this->provider = new Facebook([
             'clientId' => $config['client_id'],
             'clientSecret' => $config['client_secret'],
-            'redirectUri' => $config['redirect_url']
+            'redirectUri' => $config['redirect_uri']
         ]);
     }
 
