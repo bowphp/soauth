@@ -22,11 +22,11 @@ composer require bowphp/soauth
 
 ### Configuration
 
-Après l'installation Dans votre fichier `.env.json`, vous devez définir les informations d’accès au fournisseur comme suit:
+Après l'installation Dans votre fichier `.env.json`, vous devez définir les informations d'accès au fournisseur comme suit:
 
-#### Pour facebook:
+#### Pour facebook
 
-Vous pouvez créer la nouvelle application facebook à l’adresse [https://developers.facebook.com/fr](https://developers.facebook.com/fr).
+Vous pouvez créer la nouvelle application facebook à l'adresse [https://developers.facebook.com/fr](https://developers.facebook.com/fr).
 
 ```bash
 FACEBACK_CLIENT_ID=client_id
@@ -34,7 +34,7 @@ FACEBACK_CLIENT_SECRET=client_secret
 FACEBACK_REDIRECT_URI=redirect_uri
 ```
 
-#### Pour gitlab:
+#### Pour gitlab
 
 ```bash
 GITLAB_CLIENT_ID=client_id
@@ -42,7 +42,7 @@ GITLAB_CLIENT_SECRET=client_secret
 GITLAB_REDIRECT_URI=redirect_uri
 ```
 
-#### Pour github:
+#### Pour github
 
 ```bash
 GITHUB_CLIENT_ID=client_id
@@ -99,7 +99,7 @@ class SoauthController extends Controller
 
 ### Ajouter un itinéraire
 
-Définissez la route qui utilisera pour les actions d’appel soauth:
+Définissez la route qui utilisera pour les actions d'appel soauth:
 
 ```php
 $app->get('/oauth/:provider/redirect', 'SoauthController::redirect');
