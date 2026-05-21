@@ -1,37 +1,28 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Bow\Soauth\Provider;
 
 use Bow\Soauth\UserResource;
 use League\OAuth2\Client\Provider\LinkedIn;
 use League\OAuth2\Client\Token\AccessTokenInterface;
 
-class LinkedinProvider extends AbstractProvider
+final class LinkedinProvider extends AbstractProvider
 {
-    /**
-     * AbstractProvider constructor
-     *
-     * @param array $config
-     * @return void
-     */
-    public function __construct($config)
+    /** @param array{client_id:string,client_secret:string,redirect_uri:string} $config */
+    public function __construct(array $config)
     {
         $this->provider = new LinkedIn([
-            'clientId' => $config['client_id'],
+            'clientId'     => $config['client_id'],
             'clientSecret' => $config['client_secret'],
-            'redirectUri' => $config['redirect_uri']
+            'redirectUri'  => $config['redirect_uri'],
         ]);
     }
 
-    /**
-     * Get the user resource
-     *
-     * @return UserResource
-     */
-    public function getResource(AccessTokenInterface $access_token)
+    public function getResource(AccessTokenInterface $access_token): UserResource
     {
-        $resource = $this->provider
-            ->getResourceOwner($access_token);
+        $resource = $this->provider->getResourceOwner($access_token);
 
         return new UserResource($resource->toArray());
     }

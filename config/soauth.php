@@ -2,9 +2,9 @@
 
 return [
     'facebook' => [
-        'client_id' => app_env('FACEBACK_CLIENT_ID'),
-        'client_secret' => app_env('FACEBACK_CLIENT_SECRET'),
-        'redirect_uri' => app_env('FACEBACK_REDIRECT_URI')
+        'client_id' => app_env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => app_env('FACEBOOK_CLIENT_SECRET'),
+        'redirect_uri' => app_env('FACEBOOK_REDIRECT_URI')
     ],
 
     'gitlab' => [

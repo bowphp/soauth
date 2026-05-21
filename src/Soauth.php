@@ -2,75 +2,87 @@
 
 namespace Bow\Soauth;
 
+use Bow\Soauth\Exception\SoauthException;
 use Bow\Soauth\Provider\AbstractProvider;
 
 class Soauth
 {
     /**
-     * The providers
+     * Provider name → concrete AbstractProvider subclass.
      *
-     * @var array
+     * @var array<string, class-string<AbstractProvider>>
      */
-    private static $providers = [
-        'facebook' => \Bow\Soauth\Provider\FacebookProvider::class,
-        'gitlab' => \Bow\Soauth\Provider\GitlabProvider::class,
-        'github' => \Bow\Soauth\Provider\GithubProvider::class,
-        'google' => \Bow\Soauth\Provider\GoogleProvider::class,
-        'linkedin' => \Bow\Soauth\Provider\LinkedinProvider::class,
-        'instagram' => \Bow\Soauth\Provider\InstagramProvider::class,
+    private static array $providers = [
+        'facebook'  => Provider\FacebookProvider::class,
+        'gitlab'    => Provider\GitlabProvider::class,
+        'github'    => Provider\GithubProvider::class,
+        'google'    => Provider\GoogleProvider::class,
+        'linkedin'  => Provider\LinkedinProvider::class,
+        'instagram' => Provider\InstagramProvider::class,
     ];
 
     /**
-     * The soauth provider config
+     * Per-provider credentials (client_id / client_secret / redirect_uri),
+     * keyed by provider name.
      *
-     * @var array
+     * @var array<string, array<string, mixed>>
      */
-    private static $config;
+    private static array $config = [];
 
     /**
-     * Make Soauth configuration
+     * Seed the per-provider credentials. Usually called once at boot by
+     * SoauthConfiguration with the contents of `config/soauth.php`.
      *
-     * @param array $config
-     * @return void
+     * @param array<string, array<string, mixed>> $config
      */
-    public static function configure(array $config)
+    public static function configure(array $config): void
     {
-        static::$config = $config;
+        self::$config = $config;
     }
 
     /**
-     * Make redirect
+     * Redirect the user to the provider's consent screen.
      *
-     * @param string $provider
-     * @param array $scope
-     * @return string
+     * @param list<string> $scope
      */
-    public static function redirect($provider, $scope = [])
+    public static function redirect(string $provider, array $scope = []): mixed
     {
-        return static::provider($provider)->redirect($scope);
+        return self::provider($provider)->redirect($scope);
     }
 
     /**
-     * Load user resource
-     *
-     * @param string $provider
-     * @return UserResource
+     * Handle the provider callback and return the authenticated user.
      */
-    public static function resource(string $provider)
+    public static function resource(string $provider): UserResource
     {
-        return static::provider($provider)->resource();
+        return self::provider($provider)->resource();
     }
 
     /**
-     * Make provider
-     *
-     * @param string $provider
-     * @return AbstractProvider
+     * Resolve and instantiate the configured provider, with a clear error
+     * when the name is unknown or the credentials block is missing.
      */
-    private static function provider(string $provider): AbstractProvider
+    private static function provider(string $name): AbstractProvider
     {
-        $config = static::$config[$provider];
+        if (!isset(self::$providers[$name])) {
+            throw new SoauthException(sprintf(
+                'Unknown soauth provider "%s". Supported: %s.',
+                $name,
+                implode(', ', array_keys(self::$providers)),
+            ));
+        }
 
-        return new static::$providers[$provider]($config);
+        if (!isset(self::$config[$name]) || !is_array(self::$config[$name])) {
+            throw new SoauthException(sprintf(
+                'Soauth provider "%s" is not configured. '
+                . 'Set config(\'soauth.%s\') (client_id, client_secret, redirect_uri).',
+                $name,
+                $name,
+            ));
+        }
+
+        $class = self::$providers[$name];
+
+        return new $class(self::$config[$name]);
     }
 }

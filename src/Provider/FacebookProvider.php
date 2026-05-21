@@ -1,37 +1,29 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Bow\Soauth\Provider;
 
 use Bow\Soauth\UserResource;
 use League\OAuth2\Client\Provider\Facebook;
 use League\OAuth2\Client\Token\AccessTokenInterface;
 
-class FacebookProvider extends AbstractProvider
+final class FacebookProvider extends AbstractProvider
 {
-    /**
-     * AbstractProvider constructor
-     *
-     * @param array $config
-     * @return void
-     */
-    public function __construct($config)
+    /** @param array{client_id:string,client_secret:string,redirect_uri:string,graph_api_version?:string} $config */
+    public function __construct(array $config)
     {
         $this->provider = new Facebook([
-            'clientId' => $config['client_id'],
-            'clientSecret' => $config['client_secret'],
-            'redirectUri' => $config['redirect_uri']
+            'clientId'        => $config['client_id'],
+            'clientSecret'    => $config['client_secret'],
+            'redirectUri'     => $config['redirect_uri'],
+            'graphApiVersion' => $config['graph_api_version'] ?? 'v18.0',
         ]);
     }
 
-    /**
-     * Get the user resource
-     *
-     * @return UserResource
-     */
-    public function getResource(AccessTokenInterface $access_token)
+    public function getResource(AccessTokenInterface $access_token): UserResource
     {
-        $resource = $this->provider
-            ->getResourceOwner($access_token);
+        $resource = $this->provider->getResourceOwner($access_token);
 
         return new UserResource($resource->toArray());
     }

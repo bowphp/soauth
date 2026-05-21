@@ -7,15 +7,18 @@ class UserResource
     /**
      * User information collection
      *
-     * @var array
+     * @var array<string,mixed>
      */
-    private $attributes;
+    private array $attributes;
 
     public function __construct(array $attributes)
     {
         $this->attributes = $attributes;
 
-        if (!isset($attributes['picture']['data']['url']) && !empty($attributes['picture']['data']['url'])) {
+        // Facebook returns the avatar as picture.data.url (nested), while other
+        // providers expose a flat `picture_url`. Normalise the nested shape here
+        // so getPictureUrl() works uniformly across all providers.
+        if (!empty($attributes['picture']['data']['url'])) {
             $this->attributes['picture_url'] = $attributes['picture']['data']['url'];
         }
 
@@ -23,7 +26,7 @@ class UserResource
             $this->attributes['is_silhouette'] = $attributes['picture']['data']['is_silhouette'];
         }
 
-        if (isset($response['cover']['source']) && !empty($response['cover']['source'])) {
+        if (!empty($attributes['cover']['source'])) {
             $this->attributes['cover_photo_url'] = $attributes['cover']['source'];
         }
     }
