@@ -92,6 +92,22 @@ class UserResource
     }
 
     /**
+     * Returns whether the provider asserts the email is verified.
+     *
+     * Defaults to false when the provider gives no signal. Consumers MUST NOT
+     * link or log a user in by getEmail() unless this is true, otherwise an
+     * attacker can take over an account via an unverified address they control.
+     *
+     * @return bool
+     */
+    public function isEmailVerified(): bool
+    {
+        return (bool) ($this->getAttribute('email_verified')
+            ?? $this->getAttribute('verified_email')
+            ?? false);
+    }
+
+    /**
      * Returns the current location of the user as an array.
      *
      * @return array|null
@@ -120,7 +136,7 @@ class UserResource
 
     public function isDefaultPicture(): bool
     {
-        return $this->getAttribute('is_silhouette');
+        return (bool) $this->getAttribute('is_silhouette');
     }
 
     /**
